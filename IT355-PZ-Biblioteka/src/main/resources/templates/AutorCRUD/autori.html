@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Prikaz liste autora</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+
+<div class="container my-2">
+    <h1>Lista Autora</h1>
+    <a th:href="@{/createAutor}" class="btn btn-primary btn-sm mb-3"> Dodaj Autora </a>
+
+    <div class="row">
+        <div class="col-sm-6" th:each="autor : ${autori}">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="'ID autora:  ' +${autor.idAutora}"></h5>
+                    <p class="card-text">
+                        Naziv Autora: <strong th:text="${autor.nazivAutora}"></strong>
+                    </p>
+                    <a th:href="@{/updateAutor/{id}(id=${autor.idAutora})}" class="btn btn-primary">Promeni</a>
+                    <a th:href="@{/deleteAutor/{id}(id=${autor.idAutora})}" class="btn btn-danger">Obrisi</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <img src="https://www.livesmallbemore.blog/wp-content/uploads/2017/08/library-488690_1920.jpg" alt="W3Schools.com" style="width:104px;height:142px;">
+</div>
+
+</body>
+</html>

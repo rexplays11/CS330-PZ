@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Izmeni Knjigu</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Izmeni Knjigu</h1>
+    <form action="#" th:action="@{/updateKnjiga/{id}(id=${knjiga.idKnjige})}" th:object="${knjiga}" method="POST">
+        <input type="text" th:field="*{nazivKnjige}" class="form-control mb-4">
+        <input type="text" th:field="*{kolicina}" class="form-control mb-4">
+        <input type="text" th:field="*{zanr}" placeholder="Zanr" class="form-control mb-4">
+        <input type="text" th:field="*{slika}" placeholder="Slika" class="form-control mb-4">
+        <select th:field="*{autor.idAutora}" class="form-control mb-4">
+            <option th:each="autor : ${autori}" th:value="${autor.idAutora}" th:text="${autor.nazivAutora}"></option>
+        </select>
+
+        <select th:field="*{izdavackaKuca.idIzdavackaKuca}" class="form-control mb-4">
+            <option th:each="izdavackaKuca : ${izdavackeKuce}" th:value="${izdavackaKuca.idIzdavackaKuca}" th:text="${izdavackaKuca.nazivIzdavackeKuce}"></option>
+        </select>
+
+        <button type="submit" class="btn btn-primary">Izmeni</button>
+    </form>
+</div>
+</body>

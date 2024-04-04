@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Management System for Users</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+    <h1>Users List</h1>
+    <a th:href="@{/createKnjiga}" class="btn btn-primary btn-sm mb-3"> Dodaj knjigu </a>
+
+    <div class="row">
+        <div class="col-md-3" th:each="knjiga : ${knjige}">
+            <div class="card" style="width: 18rem;">
+                <img th:src="${knjiga.slika}" class="card-img-top mx-auto" alt="Book Image" style="width: 220px; height: 350px;">
+                <div class="card-body text-center">
+                    <h4 class="card-title font-weight-bold mb-3" th:text="${knjiga.nazivKnjige}"></h4>
+                    <p class="card-text small" th:text="${knjiga.deskripcija}"></p>
+                    <p class="card-text ">
+                        Autor: <strong th:text="${knjiga.autor.nazivAutora}"></strong>
+                    </p>
+                    <p class="card-text">
+                        Zanr: <strong th:text="${knjiga.zanr}"></strong>
+                    </p>
+                    <p class="card-text">
+                        Izdavacka Kuca: <strong th:text="${knjiga.izdavackaKuca.nazivIzdavackeKuce}"></strong>
+                    </p>
+                    <p class="card-text">
+                        Kolicina: <strong th:text="${knjiga.kolicina}"></strong>
+                    </p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

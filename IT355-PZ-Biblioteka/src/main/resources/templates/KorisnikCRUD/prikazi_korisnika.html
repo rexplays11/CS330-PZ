@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikaz Korisnika</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Korisnik Detalji</h1>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Ime: <span th:text="${korisnik.ime}"></span></h4>
+            <h6 class="card-subtitle mb-2 text-muted">Prezime: <span th:text="${korisnik.prezime}"></span></h6>
+            <p class="card-text">ID Uloge: <span th:text="${korisnik.idUloge}"></span></p>
+            <a href="/korisnici" class="card-link btn btn-primary">Nazad na listu korisnika</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

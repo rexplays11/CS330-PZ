@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en"xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prikaz Knjige</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-4">
+    <h1>Detalji Knjige</h1>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Naziv: <span th:text="${knjiga.nazivKnjige}"></span></h4>
+            <h6 class="card-subtitle mb-2 text-muted">Autor: <span th:text="${knjiga.autor.nazivAutora}"></span></h6>
+            <p class="card-text">Izdavačka kuća: <span th:text="${knjiga.izdavackaKuca.nazivIzdavackeKuce}"></span></p>
+            <p class="card-text">Količina: <span th:text="${knjiga.kolicina}"></span></p>
+            <a href="/knjige" class="card-link btn btn-primary">Nazad na listu knjiga</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>z

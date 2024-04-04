@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Pozajmljivanje Knjige</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-2">
+    <h1>Pozajmljivanje Knjige</h1>
+    <a th:href="@{/createPozajmljivanje}" class="btn btn-primary btn-sm mb-3">Dodaj Pozajmljivanje</a>
+    <table border="1" class="table table-striped table-responsive-md">
+        <thead>
+        <tr>
+            <th>ID Pozajmljivanja</th>
+            <th>ID Korisnika</th>
+            <th>ID Knjige</th>
+            <th>Broj Knjiga</th>
+            <th>Akcije</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="pozajmljivanje : ${pozajmljivanja}">
+            <td th:text="${pozajmljivanje.idPozajmljivanje}"></td>
+            <td>
+                <a th:href="@{/korisnici/{id}(id=${pozajmljivanje.idKorisnika})}"
+                   th:text="${pozajmljivanje.idKorisnika}">Detalji korisnika</a>
+            </td>
+            <td>
+                <a th:href="@{/knjiga/{id}(id=${pozajmljivanje.idKnjige})}"
+                   th:text="${pozajmljivanje.idKnjige}">Detalji knjige</a>
+            </td>
+            <td th:text="${pozajmljivanje.brojKnjiga}"></td>
+            <td>
+                <a th:href="@{/updatePozajmljivanje/{id}(id=${pozajmljivanje.idPozajmljivanje})}"
+                   class="btn btn-primary">Izmeni</a>
+                <a th:href="@{/deletePozajmljivanje/{id}(id=${pozajmljivanje.idPozajmljivanje})}"
+                   class="btn btn-danger">Obriši</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

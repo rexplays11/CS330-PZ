@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodaj Pozajmljivanje</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Dodaj Pozajmljivanje</h1>
+    <form action="#" th:action="@{/createPozajmljivanje}" th:object="${pozajmljivanje}" method="post">
+        <div class="form-group">
+            <label for="korisnik">Korisnik:</label>
+            <select class="form-control" id="korisnik" th:field="*{korisnik.id}">
+                <option th:each="korisnik : ${korisnici}" th:value="${korisnik.id}" th:text="${korisnik.ime}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="knjiga">Knjiga:</label>
+            <select class="form-control" id="knjiga" th:field="*{knjiga.id}">
+                <option th:each="knjiga : ${knjige}" th:value="${knjiga.id}" th:text="${knjiga.nazivKnjige}"></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="brojKnjiga">Broj Knjiga:</label>
+            <input type="text" class="form-control" id="brojKnjiga" th:field="*{brojKnjiga}">
+        </div>
+        <button type="submit" class="btn btn-primary">Dodaj</button>
+    </form>
+</div>
+</body>
+</html>

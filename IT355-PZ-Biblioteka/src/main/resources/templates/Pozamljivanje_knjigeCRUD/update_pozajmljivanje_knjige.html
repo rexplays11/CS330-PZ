@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Izmeni Pozajmljivanje</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1>Izmeni Pozajmljivanje</h1>
+    <form action="#" th:action="@{/updatePozajmljivanje/{id}(id=${pozajmljivanje.idPozajmljivanje})}"
+          th:object="${pozajmljivanje}" method="post">
+        <div class="form-group">
+            <label>ID Korisnika:</label>
+            <input type="text" class="form-control" th:field="*{idKorisnika}">
+        </div>
+        <div class="form-group">
+            <label>ID Knjige:</label>
+            <input type="text" class="form-control" th:field="*{idKnjige}">
+        </div>
+        <div class="form-group">
+            <label>Broj Knjiga:</label>
+            <input type="text" class="form-control" th:field="*{brojKnjiga}">
+        </div>
+        <div class="form-group">
+            <label for="datum">Datum:</label>
+            <input type="date" id="datum" class="form-control" th:field="*{datumIznamljivanja}">
+        </div>
+        <button type="submit" class="btn btn-primary">Izmeni</button>
+    </form>
+</div>
+</body>
+</html>
