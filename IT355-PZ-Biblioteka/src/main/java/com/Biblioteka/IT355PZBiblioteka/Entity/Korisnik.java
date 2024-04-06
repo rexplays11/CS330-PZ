@@ -21,6 +21,8 @@ public class Korisnik {
     @Column(name = "naziv")
     private String naziv;
 
+    @Column(name = "lozinka")
+    private String lozinka;
 
     @Column(name = "email")
     private String email;
@@ -73,5 +75,13 @@ public class Korisnik {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getLozinka() {
+        return lozinka;
+    }
+
+    public void setLozinka(String lozinka) {
+        this.lozinka = lozinka;
     }
 }

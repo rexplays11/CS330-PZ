@@ -3,6 +3,7 @@ package com.Biblioteka.IT355PZBiblioteka;
 import com.Biblioteka.IT355PZBiblioteka.Entity.Autor;
 import com.Biblioteka.IT355PZBiblioteka.Entity.IzdavackaKuca;
 import com.Biblioteka.IT355PZBiblioteka.Entity.Knjiga;
+import com.Biblioteka.IT355PZBiblioteka.Entity.PozajmljivanjeKnjige;
 import com.Biblioteka.IT355PZBiblioteka.Service.AutorService;
 import com.Biblioteka.IT355PZBiblioteka.Service.IzdavackaKucaService;
 import com.Biblioteka.IT355PZBiblioteka.Service.KnjigaService;
@@ -12,7 +13,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import java.time.LocalDate;
 import java.util.List;
 @Controller
 public class KnjigaUIController {
@@ -25,6 +28,8 @@ public class KnjigaUIController {
 
     @Autowired
     private IzdavackaKucaService izdavackaKucaService;
+
+
 
     @GetMapping("/knjige")
     public String getAllKnjige(Model model) {
@@ -77,5 +82,17 @@ public class KnjigaUIController {
     public String obrisiKnjigu(@PathVariable("id") Integer id) {
         knjigaService.deleteKnjiga(id);
         return "redirect:/knjige";
+    }
+    @PostMapping("/buyBookPozajmljivanje")
+    public String buyBookPozajmljivanje(@RequestParam("idKnjiga") Integer idKnjiga) {
+        Knjiga knjiga = knjigaService.getKnjigaById(idKnjiga);
+        if (knjiga.getKolicina() > 0) {
+            knjiga.setKolicina(knjiga.getKolicina() - 1);
+            knjigaService.updateKnjiga(idKnjiga, knjiga);
+            return "redirect:/knjige";
+        } else {
+
+            return "redirect:/knjige?error=not_available";
+        }
     }
 }

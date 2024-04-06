@@ -4,67 +4,55 @@ package com.Biblioteka.IT355PZBiblioteka.Entity;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
-@Table(name = "PozajmljivanjeKnjige")
+@Table(name = "pozajmljivanje_knjige")
 public class PozajmljivanjeKnjige {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pozajmljivanje")
-    private int idPozajmljivanje;
-
-    @Column(name = "id_korisnika")
-    private int idKorisnika;
+    private Integer idPozajmljivanje;
 
     @Column(name = "id_knjige")
-    private int idKnjige;
+    private Integer idKnjige;
 
-    @Column(name = "broj_knjiga")
-    private int brojKnjiga;
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @Temporal(TemporalType.DATE)
-    @Column(name = "datumIznamljivanja")
-    private Date datumIznamljivanja;
+    @Column(name = "id_korisnika")
+    private Integer idKorisnika;
 
-    public int getIdPozajmljivanje() {
+    @Column(name = "datum_iznamljivanja")
+    private LocalDate datumIznamljivanja;
+
+    public Integer getIdPozajmljivanje() {
         return idPozajmljivanje;
     }
 
-    public void setIdPozajmljivanje(int idPozajmljivanje) {
+    public void setIdPozajmljivanje(Integer idPozajmljivanje) {
         this.idPozajmljivanje = idPozajmljivanje;
     }
 
-    public int getIdKorisnika() {
-        return idKorisnika;
-    }
-
-    public void setIdKorisnika(int idKorisnika) {
-        this.idKorisnika = idKorisnika;
-    }
-
-    public int getIdKnjige() {
+    public Integer getIdKnjige() {
         return idKnjige;
     }
 
-    public void setIdKnjige(int idKnjige) {
+    public void setIdKnjige(Integer idKnjige) {
         this.idKnjige = idKnjige;
     }
 
-    public int getBrojKnjiga() {
-        return brojKnjiga;
+    public Integer getIdKorisnika() {
+        return idKorisnika;
     }
 
-    public void setBrojKnjiga(int brojKnjiga) {
-        this.brojKnjiga = brojKnjiga;
+    public void setIdKorisnika(Integer idKorisnika) {
+        this.idKorisnika = idKorisnika;
     }
 
-    public Date getDatumIznamljivanja() {
+    public LocalDate getDatumIznamljivanja() {
         return datumIznamljivanja;
     }
 
-    public void setDatumIznamljivanja(Date datumIznamljivanja) {
+    public void setDatumIznamljivanja(LocalDate datumIznamljivanja) {
         this.datumIznamljivanja = datumIznamljivanja;
     }
 }

@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,14 +35,21 @@ public class PozajmljivanjeKnjigeUIController {
     public String prikaziSvaPozajmljivanja(Model model) {
         List<PozajmljivanjeKnjige> pozajmljivanja = pozajmljivanjeKnjigeService.getAllPozajmljivanja();
         model.addAttribute("pozajmljivanja", pozajmljivanja);
-        return "Pozajmljivanje_knjigeCRUD/pozajmljivanje_knjige";
+        return "Pozamljivanje_knjigeCRUD/pozajmljivanje_knjige";
     }
 
     @GetMapping("/createPozajmljivanje")
     public String prikaziFormuZaKreiranje(Model model) {
         PozajmljivanjeKnjige pozajmljivanje = new PozajmljivanjeKnjige();
         model.addAttribute("pozajmljivanje", pozajmljivanje);
-        return "Pozajmljivanje_knjigeCRUD/new_pozajmljivanje_knjige";
+
+        List<Korisnik> korisnici = korisnikService.getAllKorisnici();
+        model.addAttribute("korisnici", korisnici);
+
+        List<Knjiga> knjige = knjigaService.getAllKnjige();
+        model.addAttribute("knjige", knjige);
+
+        return "Pozamljivanje_knjigeCRUD/new_pozajmljivanje_knjige";
     }
 
     @PostMapping("/createPozajmljivanje")
@@ -53,7 +62,13 @@ public class PozajmljivanjeKnjigeUIController {
     public String prikaziFormuZaAzuriranje(@PathVariable("id") Integer id, Model model) {
         PozajmljivanjeKnjige pozajmljivanje = pozajmljivanjeKnjigeService.getPozajmljivanjeById(id);
         model.addAttribute("pozajmljivanje", pozajmljivanje);
-        return "Pozajmljivanje_knjigeCRUD/update_pozajmljivanje_knjige";
+
+        List<Korisnik> korisnici = korisnikService.getAllKorisnici();
+        model.addAttribute("korisnici", korisnici);
+
+        List<Knjiga> knjige = knjigaService.getAllKnjige();
+        model.addAttribute("knjige", knjige);
+        return "Pozamljivanje_knjigeCRUD/update_pozajmljivanje_knjige";
     }
 
     @PostMapping("/updatePozajmljivanje/{id}")
@@ -72,12 +87,27 @@ public class PozajmljivanjeKnjigeUIController {
     public String prikaziKorisnika(@PathVariable("id") Integer id, Model model) {
         Korisnik korisnik = korisnikService.getKorisnikById(id);
         model.addAttribute("korisnik", korisnik);
-        return "Pozajmljivanje_knjigeCRUD/prikazi_korisnika";
+        return "KorisnikCRUD/prikazi_korisnika";
     }
     @GetMapping("/knjiga/{id}")
     public String prikaziKnjigu(@PathVariable("id") Integer id, Model model) {
         Knjiga knjiga = knjigaService.getKnjigaById(id);
         model.addAttribute("knjiga", knjiga);
-        return "Pozajmljivanje_knjigeCRUD/prikazi_knjigu";
+        return "KnjigaCRUD/prikazi_knjigu";
+    }
+    @PostMapping("/buyBook")
+    public String buyBook(@RequestParam("idKnjiga") Integer idKnjiga, @RequestParam("datum") LocalDate datum) {
+        // Postavljamo idKorisnika na 1
+        Integer idKorisnika = 1;
+
+        // Koristite idKnjiga dobijen iz forme
+        PozajmljivanjeKnjige pozajmljivanje = new PozajmljivanjeKnjige();
+        pozajmljivanje.setIdKorisnika(idKorisnika);
+        pozajmljivanje.setIdKnjige(idKnjiga);
+        pozajmljivanje.setDatumIznamljivanja(datum);
+
+        pozajmljivanjeKnjigeService.createPozajmljivanje(pozajmljivanje);
+
+        return "redirect:/knjige";
     }
 }

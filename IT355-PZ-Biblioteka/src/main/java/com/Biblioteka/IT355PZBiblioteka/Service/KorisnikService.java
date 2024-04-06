@@ -31,6 +31,7 @@ public class KorisnikService {
             korisnik.setIme(korisnikDetails.getIme());
             korisnik.setPrezime(korisnikDetails.getPrezime());
             korisnik.setNaziv(korisnikDetails.getNaziv());
+            korisnik.setLozinka(korisnikDetails.getLozinka());
             korisnik.setEmail(korisnikDetails.getEmail());
             korisnik.setIdUloge(korisnikDetails.getIdUloge());
             return korisnikRepository.save(korisnik);

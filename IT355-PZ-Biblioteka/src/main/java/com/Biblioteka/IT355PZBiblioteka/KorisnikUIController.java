@@ -2,7 +2,9 @@ package com.Biblioteka.IT355PZBiblioteka;
 
 
 import com.Biblioteka.IT355PZBiblioteka.Entity.Korisnik;
+import com.Biblioteka.IT355PZBiblioteka.Entity.Uloga;
 import com.Biblioteka.IT355PZBiblioteka.Service.KorisnikService;
+import com.Biblioteka.IT355PZBiblioteka.Service.UlogaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +19,8 @@ public class KorisnikUIController {
 
     @Autowired
     private KorisnikService korisnikService;
+    @Autowired
+    private UlogaService ulogaService;
 
     @GetMapping("/korisnici")
     public String prikaziSveKorisnike(Model model) {
@@ -29,6 +33,10 @@ public class KorisnikUIController {
     public String prikaziFormuZaKreiranje(Model model) {
         Korisnik korisnik = new Korisnik();
         model.addAttribute("korisnik", korisnik);
+
+        List<Uloga> uloge = ulogaService.getAllUloge();
+        model.addAttribute("uloge", uloge);
+
         return "KorisnikCRUD/new_korisnik";
     }
 
@@ -42,6 +50,8 @@ public class KorisnikUIController {
     public String prikaziFormuZaAzuriranje(@PathVariable("id") Integer id, Model model) {
         Korisnik korisnik = korisnikService.getKorisnikById(id);
         model.addAttribute("korisnik", korisnik);
+        List<Uloga> uloge = ulogaService.getAllUloge();
+        model.addAttribute("uloge", uloge);
         return "KorisnikCRUD/update_korisnik";
     }
 

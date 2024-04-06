@@ -2,22 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Management System for Authors</title>
+    <title>Sistem za Menadzment Autora </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-    <h1>Author Management System</h1>
+    <h1>Sistem za Menadzment Autora</h1>
     <hr>
-    <h2>Add Author</h2>
+    <h2>Novi Autor</h2>
     <form action="#" th:action="@{/createAutor}" th:object="${autor}" method="POST">
-        <input type="text" th:field="*{nazivAutora}" placeholder="Author Name" class="form-control mb-4 col-4">
-        <button type="submit" class="btn btn-info col-2"> Add Author</button>
+        <label>Naziv Autora:</label>
+        <input type="text" th:field="*{nazivAutora}" placeholder="Ime Autora" class="form-control mb-4 col-4">
+        <button type="submit" class="btn btn-info col-2"> Dodaj Novog Autora</button>
     </form>
     <hr>
-    <a th:href="@{/autori}"> Back to Authors List</a>
+    <a th:href="@{/autori}"> Vrati se na listu</a>
 </div>
 </body>
 </html>

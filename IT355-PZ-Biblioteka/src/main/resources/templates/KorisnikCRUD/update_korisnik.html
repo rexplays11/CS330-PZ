@@ -14,10 +14,13 @@
     <h2>Update User</h2>
     <form action="#" th:action="@{/updateKorisnik/{id}(id=${korisnik.idKorisnika})}" th:object="${korisnik}" method="POST">
         <input type="text" th:field="*{naziv}" placeholder="Naziv korisnika" class="form-control mb-4 col-4">
+        <input type="text" th:field="*{lozinka}" placeholder="Lozinka" class="form-control mb-4 col-4">
         <input type="text" th:field="*{ime}" placeholder="First Name" class="form-control mb-4 col-4">
         <input type="text" th:field="*{prezime}" placeholder="Last Name" class="form-control mb-4 col-4">
         <input type="text" th:field="*{email}" placeholder="Email" class="form-control mb-4 col-4">
-        <input type="text" th:field="*{idUloge}" placeholder="Role ID" class="form-control mb-4 col-4">
+        <select th:field="*{idUloge}" class="form-control mb-4 col-4">
+            <option th:each="uloga : ${uloge}" th:value="${uloga.idUloge}" th:text="${uloga.imeUlogeKorisnika}"></option>
+        </select>
         <button type="submit" class="btn btn-info col-2"> Update User</button>
     </form>
     <hr>

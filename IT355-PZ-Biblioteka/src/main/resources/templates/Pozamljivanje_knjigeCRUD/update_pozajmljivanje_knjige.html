@@ -13,17 +13,18 @@
     <form action="#" th:action="@{/updatePozajmljivanje/{id}(id=${pozajmljivanje.idPozajmljivanje})}"
           th:object="${pozajmljivanje}" method="post">
         <div class="form-group">
-            <label>ID Korisnika:</label>
-            <input type="text" class="form-control" th:field="*{idKorisnika}">
+            <label>Knjiga:</label>
+            <select th:field="*{idKnjige}" class="form-control mb-4 col-4">
+                <option th:each="knjiga : ${knjige}" th:value="${knjiga.idKnjige}" th:text="${knjiga.nazivKnjige}"></option>
+            </select>
         </div>
         <div class="form-group">
-            <label>ID Knjige:</label>
-            <input type="text" class="form-control" th:field="*{idKnjige}">
+            <label>Korisnik:</label>
+            <select th:field="*{idKorisnika}" class="form-control mb-4 col-4">
+                <option th:each="korisnik : ${korisnici}" th:value="${korisnik.idKorisnika}" th:text="${korisnik.naziv}"></option>
+            </select>
         </div>
-        <div class="form-group">
-            <label>Broj Knjiga:</label>
-            <input type="text" class="form-control" th:field="*{brojKnjiga}">
-        </div>
+
         <div class="form-group">
             <label for="datum">Datum:</label>
             <input type="date" id="datum" class="form-control" th:field="*{datumIznamljivanja}">

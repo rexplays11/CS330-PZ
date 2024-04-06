@@ -2,22 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Management System for Publishing Houses</title>
+    <title>Sistem za Menadzment Izdavacke Kuce</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
           crossorigin="anonymous">
 </head>
 <body>
 <div class="container">
-    <h1>Publishing House Management System</h1>
+    <h1>Sistem za Menadzment Izdavacke Kuce</h1>
     <hr>
-    <h2>Add Publishing House</h2>
+    <h2>Dodaj Izdavacku Kucu</h2>
     <form action="#" th:action="@{/createIzdavackaKuca}" th:object="${izdavackaKuca}" method="POST">
-        <input type="text" th:field="*{nazivIzdavackeKuce}" placeholder="Publishing House Name" class="form-control mb-4 col-4">
-        <button type="submit" class="btn btn-info col-2"> Add Publishing House</button>
+        <label>Datum Izdavacke kuce:</label>
+        <input type="text" th:field="*{nazivIzdavackeKuce}" placeholder="Naziv Izdavacke Kuce" class="form-control mb-4 col-4">
+        <button type="submit" class="btn btn-info col-2"> Dodaj Novu Izdavacku Kucu </button>
     </form>
     <hr>
-    <a th:href="@{/izdavacke-kuce}"> Back to Publishing Houses List</a>
+    <a th:href="@{/izdavacke-kuce}"> Vrati se na listu</a>
 </div>
 </body>
 </html>

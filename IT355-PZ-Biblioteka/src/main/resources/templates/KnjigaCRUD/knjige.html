@@ -2,41 +2,57 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Management System for Users</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-          crossorigin="anonymous">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista knjiga</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
 <div class="container my-2">
-    <h1>Users List</h1>
-    <a th:href="@{/createKnjiga}" class="btn btn-primary btn-sm mb-3"> Dodaj knjigu </a>
+    <h1>Lista knjiga</h1>
+    <a th:href="@{/createKnjiga}" class="btn btn-primary btn-sm mb-3">Dodaj knjigu</a>
 
     <div class="row">
         <div class="col-md-3" th:each="knjiga : ${knjige}">
             <div class="card" style="width: 18rem;">
-                <img th:src="${knjiga.slika}" class="card-img-top mx-auto" alt="Book Image" style="width: 220px; height: 350px;">
+                <img th:src="${knjiga.slika}" class="card-img-top mx-auto" alt="Slika knjige" style="width: 220px; height: 350px;">
                 <div class="card-body text-center">
                     <h4 class="card-title font-weight-bold mb-3" th:text="${knjiga.nazivKnjige}"></h4>
                     <p class="card-text small" th:text="${knjiga.deskripcija}"></p>
-                    <p class="card-text ">
-                        Autor: <strong th:text="${knjiga.autor.nazivAutora}"></strong>
-                    </p>
-                    <p class="card-text">
-                        Zanr: <strong th:text="${knjiga.zanr}"></strong>
-                    </p>
-                    <p class="card-text">
-                        Izdavacka Kuca: <strong th:text="${knjiga.izdavackaKuca.nazivIzdavackeKuce}"></strong>
-                    </p>
-                    <p class="card-text">
-                        Kolicina: <strong th:text="${knjiga.kolicina}"></strong>
-                    </p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <p class="card-text">Autor: <strong th:text="${knjiga.autor.nazivAutora}"></strong></p>
+                    <p class="card-text">Zanr: <strong th:text="${knjiga.zanr}"></strong></p>
+                    <p class="card-text">Izdavacka Kuca: <strong th:text="${knjiga.izdavackaKuca.nazivIzdavackeKuce}"></strong></p>
+                    <p class="card-text">Kolicina: <strong id="kolicinaKnjige" th:text="${knjiga.kolicina}"></strong></p>
+                    <!-- Provera količine pre kupovine -->
+                    <form id="buyForm" th:action="@{/buyBookPozajmljivanje}" method="post">
+                        <input type="hidden" name="idKnjiga" th:value="${knjiga.idKnjige}" />
+                        <input type="hidden" name="datum" th:value="${#dates.format(#dates.createNow(), 'yyyy-MM-dd')}" />
+                        <button type="button" class="btn btn-primary" onclick="buyBook()">Kupi knjigu</button>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
-
 </div>
+
+<script>
+    function buyBook() {
+        var form = document.getElementById("buyForm");
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", form.action);
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Ažuriraj količinu na stranici
+                var kolicinaElement = document.getElementById("kolicinaKnjige");
+                var novaKolicina = parseInt(kolicinaElement.innerText) - 1;
+                kolicinaElement.innerText = novaKolicina;
+                // Redirekcija na stranicu "knjige"
+                window.location.href = "/knjige";
+            }
+        };
+        xhr.send(new URLSearchParams(new FormData(form)));
+    }
+</script>
+
 </body>
 </html>

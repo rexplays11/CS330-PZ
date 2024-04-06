@@ -29,8 +29,7 @@ public class PozajmljivanjeKnjigeService {
         PozajmljivanjeKnjige pozajmljivanje = getPozajmljivanjeById(id);
         if (pozajmljivanje != null) {
             pozajmljivanje.setIdKorisnika(updatedPozajmljivanje.getIdKorisnika());
-            pozajmljivanje.setIdKnjige(updatedPozajmljivanje.getIdKnjige());
-            pozajmljivanje.setBrojKnjiga(updatedPozajmljivanje.getBrojKnjiga());
+            pozajmljivanje.setIdKnjige(updatedPozajmljivanje.getIdKnjige());;
             pozajmljivanje.setDatumIznamljivanja(updatedPozajmljivanje.getDatumIznamljivanja());
             pozajmljivanjeKnjigeRepository.save(pozajmljivanje);
         }
