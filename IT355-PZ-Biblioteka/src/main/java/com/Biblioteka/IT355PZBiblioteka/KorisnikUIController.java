@@ -5,6 +5,7 @@ import com.Biblioteka.IT355PZBiblioteka.Entity.Korisnik;
 import com.Biblioteka.IT355PZBiblioteka.Entity.Uloga;
 import com.Biblioteka.IT355PZBiblioteka.Service.KorisnikService;
 import com.Biblioteka.IT355PZBiblioteka.Service.UlogaService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +20,7 @@ public class KorisnikUIController {
 
     @Autowired
     private KorisnikService korisnikService;
+
     @Autowired
     private UlogaService ulogaService;
 
@@ -65,5 +67,39 @@ public class KorisnikUIController {
     public String obrisiKorisnika(@PathVariable("id") Integer id) {
         korisnikService.deleteKorisnik(id);
         return "redirect:/korisnici";
+    }
+
+    @Autowired
+    private HttpSession session;
+
+    @GetMapping("/login")
+    public String prikaziLoginFormu(Model model) {
+        model.addAttribute("korisnik", new Korisnik());
+        return "login";
+    }
+
+    @PostMapping("/doLogin")
+    public String login(Korisnik korisnik, Model model) {
+        // Provera korisnika u bazi
+        Korisnik ulogovaniKorisnik = korisnikService.getKorisnikByNazivAndLozinka(korisnik.getNaziv(), korisnik.getLozinka());
+
+        if (ulogovaniKorisnik != null) {
+            // Postavljanje korisnika u sesiju
+            session.setAttribute("ulogovaniKorisnik", ulogovaniKorisnik);
+            model.addAttribute("korisnik", ulogovaniKorisnik);
+            System.out.println(session.getId());
+            return "userDetails";
+        } else {
+            model.addAttribute("error", "Pogrešan naziv ili lozinka.");
+            return "login";
+        }
+    }
+    @GetMapping("/logout")
+    public String odjaviKorisnika(HttpSession session) {
+
+        session.removeAttribute("ulogovaniKorisnik");
+
+     session.invalidate();
+        return "redirect:/login";
     }
 }

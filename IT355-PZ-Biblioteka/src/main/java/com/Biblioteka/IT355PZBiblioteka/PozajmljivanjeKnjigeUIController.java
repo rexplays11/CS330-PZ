@@ -95,19 +95,5 @@ public class PozajmljivanjeKnjigeUIController {
         model.addAttribute("knjiga", knjiga);
         return "KnjigaCRUD/prikazi_knjigu";
     }
-    @PostMapping("/buyBook")
-    public String buyBook(@RequestParam("idKnjiga") Integer idKnjiga, @RequestParam("datum") LocalDate datum) {
-        // Postavljamo idKorisnika na 1
-        Integer idKorisnika = 1;
 
-        // Koristite idKnjiga dobijen iz forme
-        PozajmljivanjeKnjige pozajmljivanje = new PozajmljivanjeKnjige();
-        pozajmljivanje.setIdKorisnika(idKorisnika);
-        pozajmljivanje.setIdKnjige(idKnjiga);
-        pozajmljivanje.setDatumIznamljivanja(datum);
-
-        pozajmljivanjeKnjigeService.createPozajmljivanje(pozajmljivanje);
-
-        return "redirect:/knjige";
-    }
 }

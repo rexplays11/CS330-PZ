@@ -38,7 +38,9 @@ public class KorisnikService {
         }
         return null;
     }
-
+    public Korisnik getKorisnikByNazivAndLozinka(String naziv, String lozinka) {
+        return korisnikRepository.findByNazivAndLozinka(naziv, lozinka);
+    }
     public void deleteKorisnik(Integer id) {
         korisnikRepository.deleteById(id);
     }

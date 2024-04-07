@@ -83,16 +83,5 @@ public class KnjigaUIController {
         knjigaService.deleteKnjiga(id);
         return "redirect:/knjige";
     }
-    @PostMapping("/buyBookPozajmljivanje")
-    public String buyBookPozajmljivanje(@RequestParam("idKnjiga") Integer idKnjiga) {
-        Knjiga knjiga = knjigaService.getKnjigaById(idKnjiga);
-        if (knjiga.getKolicina() > 0) {
-            knjiga.setKolicina(knjiga.getKolicina() - 1);
-            knjigaService.updateKnjiga(idKnjiga, knjiga);
-            return "redirect:/knjige";
-        } else {
 
-            return "redirect:/knjige?error=not_available";
-        }
-    }
 }
