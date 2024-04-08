@@ -7,34 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class AutorService {
+import java.util.List;
 
-    @Autowired
-    private AutorRepository autorRepository;
-
-    public List<Autor> getAllAutori() {
-        return autorRepository.findAll();
-    }
-
-    public Autor getAutorById(Integer id) {
-        return autorRepository.findById(id).orElse(null);
-    }
-
-    public Autor createAutor(Autor autor) {
-        return autorRepository.save(autor);
-    }
-
-    public Autor updateAutor(Integer id, Autor autorDetails) {
-        Autor autor = autorRepository.findById(id).orElse(null);
-        if (autor != null) {
-            autor.setNazivAutora(autorDetails.getNazivAutora());
-            return autorRepository.save(autor);
-        }
-        return null;
-    }
-
-    public void deleteAutor(Integer id) {
-        autorRepository.deleteById(id);
-    }
+public interface AutorService {
+    List<Autor> getAllAutori();
+    Autor getAutorById(Integer id);
+    Autor createAutor(Autor autor);
+    Autor updateAutor(Integer id, Autor autorDetails);
+    void deleteAutor(Integer id);
 }

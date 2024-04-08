@@ -7,41 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class KorisnikService {
+import java.util.List;
 
-    @Autowired
-    private KorisnikRepository korisnikRepository;
-
-    public List<Korisnik> getAllKorisnici() {
-        return korisnikRepository.findAll();
-    }
-
-    public Korisnik getKorisnikById(Integer id) {
-        return korisnikRepository.findById(id).orElse(null);
-    }
-
-    public Korisnik createKorisnik(Korisnik korisnik) {
-        return korisnikRepository.save(korisnik);
-    }
-
-    public Korisnik updateKorisnik(Integer id, Korisnik korisnikDetails) {
-        Korisnik korisnik = korisnikRepository.findById(id).orElse(null);
-        if (korisnik != null) {
-            korisnik.setIme(korisnikDetails.getIme());
-            korisnik.setPrezime(korisnikDetails.getPrezime());
-            korisnik.setNaziv(korisnikDetails.getNaziv());
-            korisnik.setLozinka(korisnikDetails.getLozinka());
-            korisnik.setEmail(korisnikDetails.getEmail());
-            korisnik.setIdUloge(korisnikDetails.getIdUloge());
-            return korisnikRepository.save(korisnik);
-        }
-        return null;
-    }
-    public Korisnik getKorisnikByNazivAndLozinka(String naziv, String lozinka) {
-        return korisnikRepository.findByNazivAndLozinka(naziv, lozinka);
-    }
-    public void deleteKorisnik(Integer id) {
-        korisnikRepository.deleteById(id);
-    }
+public interface KorisnikService {
+    List<Korisnik> getAllKorisnici();
+    Korisnik getKorisnikById(Integer id);
+    Korisnik createKorisnik(Korisnik korisnik);
+    Korisnik updateKorisnik(Integer id, Korisnik korisnikDetails);
+    Korisnik getKorisnikByNazivAndLozinka(String naziv, String lozinka);
+    void deleteKorisnik(Integer id);
 }

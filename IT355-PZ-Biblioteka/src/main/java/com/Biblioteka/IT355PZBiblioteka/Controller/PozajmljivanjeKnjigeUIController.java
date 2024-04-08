@@ -1,4 +1,4 @@
-package com.Biblioteka.IT355PZBiblioteka;
+package com.Biblioteka.IT355PZBiblioteka.Controller;
 
 import com.Biblioteka.IT355PZBiblioteka.Entity.Knjiga;
 import com.Biblioteka.IT355PZBiblioteka.Entity.Korisnik;
@@ -95,5 +95,33 @@ public class PozajmljivanjeKnjigeUIController {
         model.addAttribute("knjiga", knjiga);
         return "KnjigaCRUD/prikazi_knjigu";
     }
+    @PostMapping("/buyBook")
+    public String buyBook(@RequestParam("idKnjiga") Integer idKnjiga,
+                          @RequestParam("idKorisnika") Integer idKorisnika,
+                          @RequestParam("datum") LocalDate datum) {
 
+
+        Knjiga knjiga = knjigaService.getKnjigaById(idKnjiga);
+
+        if (knjiga.getKolicina() > 0) {
+
+            knjiga.setKolicina(knjiga.getKolicina() - 1);
+
+
+            knjigaService.updateKnjiga(idKnjiga, knjiga);
+
+
+            PozajmljivanjeKnjige pozajmljivanje = new PozajmljivanjeKnjige();
+            pozajmljivanje.setIdKorisnika(idKorisnika);
+            pozajmljivanje.setIdKnjige(idKnjiga);
+            pozajmljivanje.setDatumIznamljivanja(datum);
+
+
+            pozajmljivanjeKnjigeService.createPozajmljivanje(pozajmljivanje);
+        } else {
+            return "redirect:/error";
+        }
+
+        return "redirect:/knjige";
+    }
 }

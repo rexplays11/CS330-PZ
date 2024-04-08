@@ -7,34 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class UlogaService {
+import java.util.List;
 
-    @Autowired
-    private UlogaRepository ulogaRepository;
-
-    public List<Uloga> getAllUloge() {
-        return ulogaRepository.findAll();
-    }
-
-    public Uloga getUlogaById(Integer id) {
-        return ulogaRepository.findById(id).orElse(null);
-    }
-
-    public Uloga createUloga(Uloga uloga) {
-        return ulogaRepository.save(uloga);
-    }
-
-    public Uloga updateUloga(Integer id, Uloga ulogaDetails) {
-        Uloga uloga = ulogaRepository.findById(id).orElse(null);
-        if (uloga != null) {
-            uloga.setImeUlogeKorisnika(ulogaDetails.getImeUlogeKorisnika());
-            return ulogaRepository.save(uloga);
-        }
-        return null;
-    }
-
-    public void deleteUloga(Integer id) {
-        ulogaRepository.deleteById(id);
-    }
+public interface UlogaService {
+    List<Uloga> getAllUloge();
+    Uloga getUlogaById(Integer id);
+    Uloga createUloga(Uloga uloga);
+    Uloga updateUloga(Integer id, Uloga ulogaDetails);
+    void deleteUloga(Integer id);
 }

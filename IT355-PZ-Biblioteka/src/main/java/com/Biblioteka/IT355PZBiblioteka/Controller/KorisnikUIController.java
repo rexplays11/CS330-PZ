@@ -1,4 +1,4 @@
-package com.Biblioteka.IT355PZBiblioteka;
+package com.Biblioteka.IT355PZBiblioteka.Controller;
 
 
 import com.Biblioteka.IT355PZBiblioteka.Entity.Korisnik;
@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -43,10 +44,27 @@ public class KorisnikUIController {
     }
 
     @PostMapping("/createKorisnik")
+    public String Registracija(Korisnik korisnik) {
+        korisnikService.createKorisnik(korisnik);
+        return "redirect:/login";
+    }
+    @GetMapping("/registracija")
+    public String prikaziFormuZaKRegistracuhy(Model model) {
+        Korisnik korisnik = new Korisnik();
+        model.addAttribute("korisnik", korisnik);
+
+        List<Uloga> uloge = ulogaService.getAllUloge();
+        model.addAttribute("uloge", uloge);
+
+        return "registracija";
+    }
+
+    @PostMapping("/registracija")
     public String kreirajKorisnika(Korisnik korisnik) {
         korisnikService.createKorisnik(korisnik);
         return "redirect:/korisnici";
     }
+
 
     @GetMapping("/updateKorisnik/{id}")
     public String prikaziFormuZaAzuriranje(@PathVariable("id") Integer id, Model model) {
@@ -80,15 +98,15 @@ public class KorisnikUIController {
 
     @PostMapping("/doLogin")
     public String login(Korisnik korisnik, Model model) {
-        // Provera korisnika u bazi
+
         Korisnik ulogovaniKorisnik = korisnikService.getKorisnikByNazivAndLozinka(korisnik.getNaziv(), korisnik.getLozinka());
 
         if (ulogovaniKorisnik != null) {
-            // Postavljanje korisnika u sesiju
+
             session.setAttribute("ulogovaniKorisnik", ulogovaniKorisnik);
             model.addAttribute("korisnik", ulogovaniKorisnik);
             System.out.println(session.getId());
-            return "userDetails";
+            return "KnjigaCRUD/knjige";
         } else {
             model.addAttribute("error", "Pogrešan naziv ili lozinka.");
             return "login";

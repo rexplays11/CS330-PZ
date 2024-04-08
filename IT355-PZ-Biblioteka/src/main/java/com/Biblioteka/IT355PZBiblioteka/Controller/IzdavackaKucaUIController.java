@@ -1,4 +1,4 @@
-package com.Biblioteka.IT355PZBiblioteka;
+package com.Biblioteka.IT355PZBiblioteka.Controller;
 
 import com.Biblioteka.IT355PZBiblioteka.Entity.IzdavackaKuca;
 import com.Biblioteka.IT355PZBiblioteka.Service.IzdavackaKucaService;

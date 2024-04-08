@@ -1,4 +1,4 @@
-package com.Biblioteka.IT355PZBiblioteka;
+package com.Biblioteka.IT355PZBiblioteka.Controller;
 
 import com.Biblioteka.IT355PZBiblioteka.Entity.Uloga;
 import com.Biblioteka.IT355PZBiblioteka.Service.UlogaService;

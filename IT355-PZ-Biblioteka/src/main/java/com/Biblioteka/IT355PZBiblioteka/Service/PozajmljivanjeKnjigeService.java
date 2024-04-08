@@ -7,35 +7,12 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service
-public class PozajmljivanjeKnjigeService {
+import java.util.List;
 
-    @Autowired
-    private PozajmljivanjeKnjigeRepository pozajmljivanjeKnjigeRepository;
-
-    public List<PozajmljivanjeKnjige> getAllPozajmljivanja() {
-        return pozajmljivanjeKnjigeRepository.findAll();
-    }
-
-    public PozajmljivanjeKnjige getPozajmljivanjeById(int id) {
-        return pozajmljivanjeKnjigeRepository.findById(id).orElse(null);
-    }
-
-    public PozajmljivanjeKnjige createPozajmljivanje(PozajmljivanjeKnjige pozajmljivanje) {
-        return pozajmljivanjeKnjigeRepository.save(pozajmljivanje);
-    }
-
-    public void updatePozajmljivanje(int id, PozajmljivanjeKnjige updatedPozajmljivanje) {
-        PozajmljivanjeKnjige pozajmljivanje = getPozajmljivanjeById(id);
-        if (pozajmljivanje != null) {
-            pozajmljivanje.setIdKorisnika(updatedPozajmljivanje.getIdKorisnika());
-            pozajmljivanje.setIdKnjige(updatedPozajmljivanje.getIdKnjige());;
-            pozajmljivanje.setDatumIznamljivanja(updatedPozajmljivanje.getDatumIznamljivanja());
-            pozajmljivanjeKnjigeRepository.save(pozajmljivanje);
-        }
-    }
-
-    public void deletePozajmljivanje(int id) {
-        pozajmljivanjeKnjigeRepository.deleteById(id);
-    }
+public interface PozajmljivanjeKnjigeService {
+    List<PozajmljivanjeKnjige> getAllPozajmljivanja();
+    PozajmljivanjeKnjige getPozajmljivanjeById(int id);
+    PozajmljivanjeKnjige createPozajmljivanje(PozajmljivanjeKnjige pozajmljivanje);
+    void updatePozajmljivanje(int id, PozajmljivanjeKnjige updatedPozajmljivanje);
+    void deletePozajmljivanje(int id);
 }
