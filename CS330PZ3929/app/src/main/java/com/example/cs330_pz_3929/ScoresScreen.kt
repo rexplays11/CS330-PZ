@@ -20,16 +20,16 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
 
 
-
 @Composable
-fun ScoresScreen(navController: NavHostController) {
-    val scores = listOf(
-        "Player1" to 50,
-        "Player2" to 40,
-        "Player3" to 30,
-        "Player4" to 20,
-        "Player5" to 10
-    )
+fun ScoresScreen(navController: NavHostController, viewModel: ScoresViewModel) {
+    val scores = remember { mutableStateOf<List<Score>>(emptyList()) }
+
+    // Effect za dobavljanje score-ova iz ViewModel-a pri prvom renderiranju
+    LaunchedEffect(true) {
+        viewModel.allScores.observeForever { updatedScores ->
+            scores.value = updatedScores
+        }
+    }
 
     Column(
         modifier = Modifier
@@ -40,8 +40,8 @@ fun ScoresScreen(navController: NavHostController) {
     ) {
         Text("High Scores", fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
-        scores.forEach { (name, score) ->
-            Text("$name: $score points")
+        scores.value.forEach { score ->
+            Text("${score.playerName}: ${score.score} points")
             Spacer(modifier = Modifier.height(8.dp))
         }
         Spacer(modifier = Modifier.height(16.dp))
