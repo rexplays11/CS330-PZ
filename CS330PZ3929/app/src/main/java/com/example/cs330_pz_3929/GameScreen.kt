@@ -18,9 +18,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavHostController
+import com.example.cs330_pz_3929.ViewModel.GameViewModel
 
 import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 import kotlin.random.Random
 @Composable
 fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shapeSize: Int, viewModel: GameViewModel) {

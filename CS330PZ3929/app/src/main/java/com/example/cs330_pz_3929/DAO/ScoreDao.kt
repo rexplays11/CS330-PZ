@@ -1,10 +1,10 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.DAO
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import kotlinx.coroutines.flow.Flow
+import com.example.cs330_pz_3929.Entity.Score
 
 @Dao
 interface ScoreDao {
