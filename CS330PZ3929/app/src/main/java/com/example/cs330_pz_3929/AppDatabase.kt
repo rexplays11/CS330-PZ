@@ -9,6 +9,8 @@ import com.example.cs330_pz_3929.DAO.UserDao
 import com.example.cs330_pz_3929.Entity.Score
 import com.example.cs330_pz_3929.Entity.User
 
+
+
 @Database(entities = [User::class, Score::class], version = 1, exportSchema = false)
 abstract class AppDatabase : RoomDatabase() {
     abstract fun userDao(): UserDao

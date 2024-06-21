@@ -14,7 +14,7 @@ class ScoresViewModel(application: Application) : AndroidViewModel(application) 
 
     private val scoreRepository: ScoreRepository
 
-    // LiveData za prikaz score-ova u ScoresScreen-u
+
     val allScores: LiveData<List<Score>>
 
     init {
@@ -23,7 +23,7 @@ class ScoresViewModel(application: Application) : AndroidViewModel(application) 
         allScores = scoreRepository.getAllScores()
     }
 
-    // Metoda za dodavanje novog score-a
+
     fun insertScore(score: Score) = viewModelScope.launch(Dispatchers.IO) {
         scoreRepository.insert(score)
     }
