@@ -10,7 +10,7 @@ import com.example.cs330_pz_3929.Entity.Score
 import kotlinx.coroutines.launch
 
 class GameViewModel(application: Application) : AndroidViewModel(application) {
-    private val scoreDao: ScoreDao = AppDatabase.getDatabase(application).scoreDao()
+    var scoreDao: ScoreDao = AppDatabase.getDatabase(application).scoreDao()
 
     fun saveScore(playerName: String, score: Int) {
         viewModelScope.launch {
