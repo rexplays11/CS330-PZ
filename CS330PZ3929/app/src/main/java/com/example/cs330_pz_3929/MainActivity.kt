@@ -15,6 +15,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
 import androidx.compose.runtime.remember
+import com.example.cs330_pz_3929.Screens.GameScreen
+import com.example.cs330_pz_3929.Screens.HomeScreen
+import com.example.cs330_pz_3929.Screens.ScoresScreen
+import com.example.cs330_pz_3929.Screens.SettingsScreen
 import com.example.cs330_pz_3929.ViewModel.GameViewModel
 import com.example.cs330_pz_3929.ViewModel.ScoresViewModel
 

@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.Screens
 
 
 import androidx.compose.animation.AnimatedVisibility
@@ -25,10 +25,11 @@ import com.example.cs330_pz_3929.ViewModel.ScoresViewModel
 @OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun ScoresScreen(navController: NavHostController, viewModel: ScoresViewModel) {
+    // Za čuvanje liste rezultata sa mogućnošću promene.
     val scores = remember { mutableStateOf<List<Score>>(emptyList()) }
     var showScores by remember { mutableStateOf(false) }
 
-
+    // Posmatra promene u listi rezultata i ažurira stanje kada se rezultati promene.
     LaunchedEffect(true) {
         viewModel.allScores.observeForever { updatedScores ->
             scores.value = updatedScores
@@ -46,7 +47,7 @@ fun ScoresScreen(navController: NavHostController, viewModel: ScoresViewModel) {
         Text("High Scores", fontSize = 24.sp)
         Spacer(modifier = Modifier.height(16.dp))
 
-
+        // AnimatedVisibility za animirano prikazivanje liste rezultata.
         AnimatedVisibility(
             visible = showScores,
             enter = slideInVertically(
@@ -57,6 +58,7 @@ fun ScoresScreen(navController: NavHostController, viewModel: ScoresViewModel) {
                 targetOffsetY = { -it },
                 animationSpec = tween(durationMillis = 500)
             )
+            // Column za prikazivanje svakog rezultata sa razmakom između njih.
         ) {
             Column {
                 scores.value.forEach { score ->

@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.Screens
 
 
 import androidx.compose.foundation.layout.*
@@ -15,9 +15,11 @@ import androidx.navigation.NavHostController
 
 @Composable
 fun SettingsScreen(navController: NavHostController, currentSpeed: Long, currentSize: Int, onSave: (Long, Int) -> Unit) {
+    // Za čuvanje trenutnih vrednosti brzine i veličine sa mogućnošću promene.
     var speed by remember { mutableStateOf(currentSpeed) }
     var size by remember { mutableStateOf(currentSize) }
 
+    // Za raspored elemenata vertikalno, sa popunjavanjem ekrana.
     Column(
         modifier = Modifier
             .fillMaxSize()

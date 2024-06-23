@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.Screens
 
 
 import androidx.compose.foundation.layout.Arrangement

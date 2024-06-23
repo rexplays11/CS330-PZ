@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.Screens
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -13,13 +13,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavHostController
+import com.example.cs330_pz_3929.API.ApiService
 import com.example.cs330_pz_3929.ViewModel.GameViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Path
 import kotlin.random.Random
 
 @Composable
@@ -43,9 +42,10 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
     val apiService = retrofit.create(ApiService::class.java)
 
     LaunchedEffect(Unit) {
-        val startTime = System.currentTimeMillis()
+
+        val startTime = System.currentTimeMillis() //cuva vreme kada je pocela igra
         while (System.currentTimeMillis() - startTime < gameDuration) {
-            val numberOfShapes = Random.nextInt(1, maxShapes + 1)
+            val numberOfShapes = Random.nextInt(1, maxShapes + 1) // Generisanje nasumicnog broja oblika, krugova.
             shapes.clear()
             repeat(numberOfShapes) {
                 shapes.add(
@@ -65,6 +65,7 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
+        //za prikazivanje trenutnog rezultata.
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
@@ -91,7 +92,7 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
             Text("Back to Home")
         }
     }
-
+// AlertDialog koji se prikazuje kada igra završi.
     if (showDialog) {
         AlertDialog(
             onDismissRequest = {},

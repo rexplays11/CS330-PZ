@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.Database
 
 import android.content.Context
 import androidx.room.Database
@@ -19,7 +19,8 @@ abstract class AppDatabase : RoomDatabase() {
     companion object {
         @Volatile
         private var INSTANCE: AppDatabase? = null
-
+        // Funkcija za dobijanje instance baze podataka.
+        // Ako instance nema, sinhronizuje se kreiranje nove instance baze.
         fun getDatabase(context: Context): AppDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
