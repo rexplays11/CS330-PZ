@@ -1,8 +1,6 @@
 package com.example.cs330_pz_3929
 
 
-
-
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import androidx.navigation.compose.NavHost
@@ -19,6 +17,7 @@ import com.example.cs330_pz_3929.Screens.ScoresScreen
 import com.example.cs330_pz_3929.Screens.SettingsScreen
 import com.example.cs330_pz_3929.ViewModel.GameViewModel
 import com.example.cs330_pz_3929.ViewModel.ScoresViewModel
+import com.example.cs330_pz_3929.ViewModel.SettingsViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -27,23 +26,32 @@ class MainActivity : ComponentActivity() {
         // Inicijalizacija ViewModel-a
         val gameViewModel: GameViewModel by viewModels()
         val scoresViewModel: ScoresViewModel by viewModels()
+        val settingsViewModel: SettingsViewModel by viewModels()
 
         setContent {
             val navController = rememberNavController()
-            var speed by remember { mutableStateOf(1000L) }
-            var size by remember { mutableStateOf(30) }
+
+            // Prikupljanje vrednosti iz SettingsViewModel-a
+            val speed by settingsViewModel.speed.collectAsState()
+            val size by settingsViewModel.size.collectAsState()
 
             // Povezivanje NavHost-a s Composable funkcijama
             NavHost(navController, startDestination = "home") {
                 composable("home") { HomeScreen(navController) }
                 composable("settings") {
-                    SettingsScreen(navController, speed, size) { newSpeed, newSize ->
-                        speed = newSpeed
-                        size = newSize
+                    SettingsScreen(
+                        navController,
+                        speed,
+                        size
+                    ) { newSpeed, newSize ->
+                        settingsViewModel.updateSpeed(newSpeed)
+                        settingsViewModel.updateSize(newSize)
                     }
                 }
-                composable("game") { GameScreen(navController, speed, size, gameViewModel) }
-                composable("scores") { ScoresScreen(navController,scoresViewModel) }
+                composable("game") {
+                    GameScreen(navController, speed, size, gameViewModel)
+                }
+                composable("scores") { ScoresScreen(navController, scoresViewModel) }
             }
         }
     }

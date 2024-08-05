@@ -12,17 +12,23 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.DialogProperties
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.example.cs330_pz_3929.API.ApiService
 import com.example.cs330_pz_3929.ViewModel.GameViewModel
+import com.example.cs330_pz_3929.getViewModelFactory
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import kotlin.random.Random
-
 @Composable
-fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shapeSize: Int, viewModel: GameViewModel) {
+fun GameScreen(
+    navController: NavHostController,
+    shapeDisappearTime: Long,
+    shapeSize: Int,
+    viewModel: GameViewModel = viewModel(factory = getViewModelFactory())
+) {
     var score by remember { mutableStateOf(0) }
     val gameDuration = 30000L // 30 sekundi
     val shapes = remember { mutableStateListOf<Shape>() }
@@ -31,19 +37,8 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
     var showDialog by remember { mutableStateOf(false) }
     var playerName by remember { mutableStateOf("") }
 
-    // Retrofit instance i ApiService
-    val retrofit = remember {
-        Retrofit.Builder()
-            .baseUrl("https://jsonplaceholder.typicode.com")
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    val apiService = retrofit.create(ApiService::class.java)
-
     LaunchedEffect(Unit) {
-
-        val startTime = System.currentTimeMillis() //cuva vreme kada je pocela igra
+        val startTime = System.currentTimeMillis() // cuva vreme kada je pocela igra
         while (System.currentTimeMillis() - startTime < gameDuration) {
             val numberOfShapes = Random.nextInt(1, maxShapes + 1) // Generisanje nasumicnog broja oblika, krugova.
             shapes.clear()
@@ -65,7 +60,7 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
         horizontalAlignment = Alignment.CenterHorizontally,
         verticalArrangement = Arrangement.SpaceBetween
     ) {
-        //za prikazivanje trenutnog rezultata.
+        // za prikazivanje trenutnog rezultata.
         Row(
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.End
@@ -92,7 +87,7 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
             Text("Back to Home")
         }
     }
-// AlertDialog koji se prikazuje kada igra završi.
+    // AlertDialog koji se prikazuje kada igra završi.
     if (showDialog) {
         AlertDialog(
             onDismissRequest = {},
@@ -135,7 +130,7 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
                         coroutineScope.launch {
                             try {
                                 val randomUserId = Random.nextInt(1, 11) // ID između 1 i 10
-                                val user = apiService.getUser(randomUserId)
+                                val user = viewModel.apiService.getUser(randomUserId)
                                 playerName = user.username
                             } catch (e: Exception) {
                                 // Handle error
@@ -150,6 +145,5 @@ fun GameScreen(navController: NavHostController, shapeDisappearTime: Long, shape
         )
     }
 }
-
 data class Shape(val x: Float, val y: Float)
 
