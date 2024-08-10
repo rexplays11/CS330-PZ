@@ -1,13 +1,13 @@
-package com.example.cs330_pz_3929.Database
+package com.example.cs330_pz_3929.data.kolekcija.database
 
 import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.example.cs330_pz_3929.DAO.ScoreDao
-import com.example.cs330_pz_3929.DAO.UserDao
-import com.example.cs330_pz_3929.Entity.Score
-import com.example.cs330_pz_3929.Entity.User
+import com.example.cs330_pz_3929.data.kolekcija.dao.ScoreDao
+import com.example.cs330_pz_3929.data.kolekcija.dao.UserDao
+import com.example.cs330_pz_3929.data.kolekcija.entity.Score
+import com.example.cs330_pz_3929.data.kolekcija.entity.User
 
 
 

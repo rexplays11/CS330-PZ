@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929.ViewModel
+package com.example.cs330_pz_3929.ui.viewmodel
 
 
 import android.app.Application
@@ -8,11 +8,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.cs330_pz_3929.API.ApiService
-import com.example.cs330_pz_3929.Database.AppDatabase
-import com.example.cs330_pz_3929.Entity.Score
-import com.example.cs330_pz_3929.Repository.ScoreRepository
+import com.example.cs330_pz_3929.api.ApiService
+import com.example.cs330_pz_3929.data.kolekcija.entity.Score
+import com.example.cs330_pz_3929.data.kolekcija.repository.ScoreRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.cancelChildren
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
@@ -59,11 +59,11 @@ class GameViewModel @Inject constructor(
     }
 
     fun resetGame() {
+        showDialog = false
         score = 0
         shapes.clear()
-        showDialog = false
+        viewModelScope.coroutineContext.cancelChildren()
     }
-
 
     var retrofit = Retrofit.Builder()
         .baseUrl("https://jsonplaceholder.typicode.com")

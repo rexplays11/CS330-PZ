@@ -1,10 +1,10 @@
-package com.example.cs330_pz_3929
+package com.example.cs330_pz_3929.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.cs330_pz_3929.DAO.ScoreDao
-import com.example.cs330_pz_3929.DAO.UserDao
-import com.example.cs330_pz_3929.Database.AppDatabase
+import com.example.cs330_pz_3929.data.kolekcija.dao.ScoreDao
+import com.example.cs330_pz_3929.data.kolekcija.dao.UserDao
+import com.example.cs330_pz_3929.data.kolekcija.database.AppDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

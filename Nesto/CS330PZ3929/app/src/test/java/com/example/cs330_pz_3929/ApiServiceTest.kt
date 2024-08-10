@@ -5,7 +5,7 @@ package com.example.cs330_pz_3929
 
 
 
-import com.example.cs330_pz_3929.API.ApiService
+import com.example.cs330_pz_3929.api.ApiService
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import junit.framework.TestCase.assertEquals

@@ -1,8 +1,8 @@
-package com.example.cs330_pz_3929.Repository
+package com.example.cs330_pz_3929.data.kolekcija.repository
 
 import androidx.lifecycle.LiveData
-import com.example.cs330_pz_3929.DAO.ScoreDao
-import com.example.cs330_pz_3929.Entity.Score
+import com.example.cs330_pz_3929.data.kolekcija.dao.ScoreDao
+import com.example.cs330_pz_3929.data.kolekcija.entity.Score
 import javax.inject.Inject
 
 class ScoreRepository @Inject constructor(private val scoreDao: ScoreDao) {

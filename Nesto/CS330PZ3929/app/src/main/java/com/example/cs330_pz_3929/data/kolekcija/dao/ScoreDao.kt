@@ -1,10 +1,10 @@
-package com.example.cs330_pz_3929.DAO
+package com.example.cs330_pz_3929.data.kolekcija.dao
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import com.example.cs330_pz_3929.Entity.Score
+import com.example.cs330_pz_3929.data.kolekcija.entity.Score
 
 @Dao
 interface ScoreDao {

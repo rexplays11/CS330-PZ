@@ -1,12 +1,12 @@
-package com.example.cs330_pz_3929.ViewModel
+package com.example.cs330_pz_3929.ui.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
-import com.example.cs330_pz_3929.Database.AppDatabase
-import com.example.cs330_pz_3929.Entity.Score
-import com.example.cs330_pz_3929.Repository.ScoreRepository
+import com.example.cs330_pz_3929.data.kolekcija.database.AppDatabase
+import com.example.cs330_pz_3929.data.kolekcija.entity.Score
+import com.example.cs330_pz_3929.data.kolekcija.repository.ScoreRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

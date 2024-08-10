@@ -10,14 +10,13 @@ import androidx.navigation.compose.rememberNavController
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.viewModels
-import androidx.compose.runtime.remember
-import com.example.cs330_pz_3929.Screens.GameScreen
-import com.example.cs330_pz_3929.Screens.HomeScreen
-import com.example.cs330_pz_3929.Screens.ScoresScreen
-import com.example.cs330_pz_3929.Screens.SettingsScreen
-import com.example.cs330_pz_3929.ViewModel.GameViewModel
-import com.example.cs330_pz_3929.ViewModel.ScoresViewModel
-import com.example.cs330_pz_3929.ViewModel.SettingsViewModel
+import com.example.cs330_pz_3929.ui.screens.GameScreen
+import com.example.cs330_pz_3929.ui.screens.HomeScreen
+import com.example.cs330_pz_3929.ui.screens.ScoresScreen
+import com.example.cs330_pz_3929.ui.screens.SettingsScreen
+import com.example.cs330_pz_3929.ui.viewmodel.GameViewModel
+import com.example.cs330_pz_3929.ui.viewmodel.ScoresViewModel
+import com.example.cs330_pz_3929.ui.viewmodel.SettingsViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

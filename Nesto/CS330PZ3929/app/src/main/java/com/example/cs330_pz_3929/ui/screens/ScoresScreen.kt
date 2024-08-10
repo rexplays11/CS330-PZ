@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929.Screens
+package com.example.cs330_pz_3929.ui.screens
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi
@@ -13,8 +13,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavHostController
-import com.example.cs330_pz_3929.Entity.Score
-import com.example.cs330_pz_3929.ViewModel.ScoresViewModel
+import com.example.cs330_pz_3929.data.kolekcija.entity.Score
+import com.example.cs330_pz_3929.ui.viewmodel.ScoresViewModel
 
 @OptIn(ExperimentalAnimationApi::class)
 @Composable

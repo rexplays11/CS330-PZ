@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929.Entity
+package com.example.cs330_pz_3929.data.kolekcija.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

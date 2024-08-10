@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929.ViewModel
+package com.example.cs330_pz_3929.ui.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

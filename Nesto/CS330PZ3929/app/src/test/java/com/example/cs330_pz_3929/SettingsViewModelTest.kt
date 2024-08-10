@@ -1,7 +1,7 @@
 package com.example.cs330_pz_3929
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
-import com.example.cs330_pz_3929.ViewModel.SettingsViewModel
+import com.example.cs330_pz_3929.ui.viewmodel.SettingsViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.first

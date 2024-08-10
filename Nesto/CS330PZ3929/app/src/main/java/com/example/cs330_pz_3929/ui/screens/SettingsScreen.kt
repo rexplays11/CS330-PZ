@@ -1,6 +1,5 @@
-package com.example.cs330_pz_3929.Screens
+package com.example.cs330_pz_3929.ui.screens
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
 import androidx.compose.material3.Button
 import androidx.compose.material3.Slider
 import androidx.compose.material3.Text
@@ -9,9 +8,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
-import com.example.cs330_pz_3929.ViewModel.SettingsViewModel
+
 @Composable
 fun SettingsScreen(
     navController: NavHostController,

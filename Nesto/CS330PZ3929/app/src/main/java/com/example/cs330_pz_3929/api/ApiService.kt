@@ -1,4 +1,4 @@
-package com.example.cs330_pz_3929.API
+package com.example.cs330_pz_3929.api
 
 import retrofit2.http.GET
 import retrofit2.http.Path

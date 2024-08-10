@@ -61,6 +61,7 @@ dependencies {
     implementation("com.google.firebase:firebase-crashlytics-buildtools:3.0.0")
     implementation("androidx.test:core-ktx:1.5.0")
     implementation("androidx.test.ext:junit-ktx:1.2.1")
+    implementation("androidx.test:runner:1.6.1")
 
     val room_version = "2.6.1"
     implementation("androidx.room:room-runtime:$room_version")
@@ -82,10 +83,13 @@ dependencies {
 
     testImplementation ("junit:junit:4.13.2")
     testImplementation ("org.mockito:mockito-core:3.11.2")
+    testImplementation ("androidx.test:core:1.4.0")
+    testImplementation ("androidx.test.ext:truth:1.4.0")
     testImplementation ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.5.2")
     androidTestImplementation ("androidx.test.ext:junit:1.1.3")
     androidTestImplementation ("androidx.test.espresso:espresso-core:3.4.0")
-    androidTestImplementation ("androidx.room:room-testing:2.3.0")
+
+    androidTestImplementation ("androidx.room:room-testing:2.5.0")
 
     implementation("com.google.dagger:hilt-android:2.51.1")
     kapt("com.google.dagger:hilt-android-compiler:2.51.1")
