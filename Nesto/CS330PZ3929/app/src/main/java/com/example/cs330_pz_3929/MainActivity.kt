@@ -18,7 +18,9 @@ import com.example.cs330_pz_3929.Screens.SettingsScreen
 import com.example.cs330_pz_3929.ViewModel.GameViewModel
 import com.example.cs330_pz_3929.ViewModel.ScoresViewModel
 import com.example.cs330_pz_3929.ViewModel.SettingsViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

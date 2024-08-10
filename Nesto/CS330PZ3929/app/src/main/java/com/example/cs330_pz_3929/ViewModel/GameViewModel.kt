@@ -11,15 +11,22 @@ import androidx.lifecycle.viewModelScope
 import com.example.cs330_pz_3929.API.ApiService
 import com.example.cs330_pz_3929.Database.AppDatabase
 import com.example.cs330_pz_3929.Entity.Score
+import com.example.cs330_pz_3929.Repository.ScoreRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Inject
 import kotlin.random.Random
 
 data class Shape(val x: Float, val y: Float)
 
-class GameViewModel(application: Application) : AndroidViewModel(application) {
+@HiltViewModel
+class GameViewModel @Inject constructor(
+    application: Application,
+    private val scoreRepository: ScoreRepository
+) : AndroidViewModel(application) {
     var score by mutableStateOf(0)
     val shapes = mutableStateListOf<Shape>()
     var showDialog by mutableStateOf(false)
@@ -57,7 +64,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
         showDialog = false
     }
 
-    // API call logic
+
     var retrofit = Retrofit.Builder()
         .baseUrl("https://jsonplaceholder.typicode.com")
         .addConverterFactory(GsonConverterFactory.create())
@@ -79,8 +86,7 @@ class GameViewModel(application: Application) : AndroidViewModel(application) {
 
     fun saveScore(playerName: String, score: Int) {
         viewModelScope.launch {
-            val scoreDao = AppDatabase.getDatabase(getApplication()).scoreDao()
-            scoreDao.insert(Score(playerName = playerName, score = score))
+            scoreRepository.insert(Score(playerName = playerName, score = score))
         }
     }
 }
